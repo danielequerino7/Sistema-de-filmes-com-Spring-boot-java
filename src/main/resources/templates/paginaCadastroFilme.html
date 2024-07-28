@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro Filmes</title>
+</head>
+<body>
+    <h1 style="text-align: center;">Cadastro de filme no catálogo</h1>
+    <form th:object="${filme}" method="post" th:action="@{/salvar}" enctype="multipart/form-data" style="text-align: center;">
+        <input type="hidden" th:field="*{id}" style="text-align: center;" />
+        Título: <input type="text" th:field="*{titulo}" style="text-align: center;" />
+        <span th:if="${#fields.hasErrors('titulo')}" th:errors="*{titulo}" style="color: red;text-align: center;"> </span> <br />
+        Idioma de origem: <input type="text" th:field="*{idiomaOriginal}" style="text-align: center;" /><br />
+        Ano de lançamento: <input type="number" th:field="*{anoLancamento}" style="text-align: center;" /><br />
+        Classificação: <input type="text" th:field="*{classificacao}" style="text-align: center;" /><br />
+        Duração: <input type="text" th:field="*{duracao}" style="text-align: center;" /><br />
+        Anexar imagem: <input type="file" name="file" style="text-align: center;" > <br> <br>
+        <button type="submit" style="text-align: center;">Cadastrar</button>
+    </form>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Usuario</title>
+</head>
+<body>
+    <h1 style="text-align: center;">Filmes no catálogo - TELA ADMIN</h1>
+    <table style='display: flex; flex-direction: column; align-items: center;'><header style='margin-bottom: 20px;'>
+        <thead>
+            <tr>
+                <td>Título</td>
+                <td>Idioma de origem</td>
+                <td>Ano de lançamento</td>
+                <td>Classificação</td>
+                <td>Duração</td>
+                <td>Capa</td>
+                <td>Ação</td>
+                <td>Ação</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="filme : ${filmes}">
+                <td th:text="${filme.titulo}"></td>
+                <td th:text="${filme.idiomaOriginal}"></td>
+                <td th:text="${filme.anoLancamento}"></td>
+                <td th:text="${filme.classificacao}"></td>
+                <td th:text="${filme.duracao} + 'min'"></td>
+                <td>
+                    <img th:src="@{'/images/' + ${filme.imageUri}}" alt="Capa do Filme" width="100" height="100"/>
+                </td>
+                <td>
+                    <a th:href="@{'/editar/' + ${filme.id}}">Editar</a>
+                </td>
+                <td>
+                    <a th:href="@{'/deletar/' + ${filme.id}}">Deletar</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <p th:if="${message}" th:text="${message}" style="text-align: center;"></p>
+    <a href="/cadastro" style="text-align: center;">Cadastrar novos filmes no catálogo</a>
+</body>
+</html>

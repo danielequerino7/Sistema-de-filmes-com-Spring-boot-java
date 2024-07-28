@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Filme</title>
+</head>
+<body>
+    <h1 style="text-align: center;">Editar filme no catálogo</h1>
+    <form th:object="${filme}" method="post" th:action="@{/salvar}" enctype="multipart/form-data">
+        <input type="hidden" th:field="*{id}" />
+        Título: <input type="text" th:field="*{titulo}" />
+        <span th:if="${#fields.hasErrors('titulo')}" th:errors="*{titulo}" style="color: red"> </span> <br />
+        Idioma de origem: <input type="text" th:field="*{idiomaOriginal}" /><br />
+        Ano de lançamento: <input type="number" th:field="*{anoLancamento}" /><br />
+        Classificação: <input type="text" th:field="*{classificacao}" /><br />
+        Duração: <input type="text" th:field="*{duracao}" /><br />
+        <td>
+            <img th:src="@{'/images/' + ${filme.imageUri}}" alt="Capa do Filme" width="100" height="100"/> <br>
+        </td>
+        Atualizar imagem <input type="file" name="file" th:field="*{imageUri}"> <br> <br>
+        <button type="submit">Atualizar</button>
+    </form>
+</body>
+</html>

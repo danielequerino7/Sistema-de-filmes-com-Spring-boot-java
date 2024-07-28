@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Home Filme</title>
+</head>
+<body>
+    <h1 style="text-align: center;">Filmes no catálogo - TELA HOME</h1>
+    <table style='display: flex; flex-direction: column; align-items: center; margin-top: 0px'>
+        <thead>
+            <tr>
+                <td>Título</td>
+                <td>Idioma de origem</td>
+                <td>Ano de lançamento</td>
+                <td>Classificação</td>
+                <td>Duração</td>
+                <td>Capa do filme</td>
+                <td>Comprar/Alugar</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="filme : ${filmes}">
+                <td th:text="${filme.titulo}"></td>
+                <td th:text="${filme.idiomaOriginal}"></td>
+                <td th:text="${filme.anoLancamento}"></td>
+                <td th:text="${filme.classificacao}"></td>
+                <td th:text="${filme.duracao}">min</td>
+                <td>
+                    <img th:src="@{'/images/' + ${filme.imageUri}}" alt="Capa do Filme" width="100" height="100"/>
+                </td>
+                <td>
+                    <a th:href="@{'/adicionarCarrinho/' + ${filme.id}}">Comprar/Alugar</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <p th:text="'Número de filmes no catálogo: ' + ${filmes.size()}" style="text-align: center;"></p>
+    <p th:if="${message}" th:text="${message}" style="text-align: center;"></p>
+
+    <a style="text-align: center;" href="/verCarrinho">Carrinho de compras</a>
+
+</body>
+</html>
